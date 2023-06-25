@@ -8,16 +8,12 @@ describe('Test Suite for Login Test Page', () => {
     it('Should navigate to the homepage successfully', () => {
         // Assert that the current URL is the homepage
         cy.url().should('include', '/practice-test-login')
-    })
-
-    // Step 2: Validate the correct page is loaded based on the primary heading
-    it('Validate the correct page was loaded', () => {
         // Assert that the "Test login" heading" exists on the page as expected
         cy.get('h2').contains('Test login')
     })
 
     // Step 3: Interact with the login elements (let's type something in the input box with the .action-email class)
-    it('Validate the correct page was loaded', () => {
+    it('Validate login and log out are successful', () => {
         // Assert that the credentials fields exists on the page as expected and we can type into them
         cy.get('[id=username]')
             .type('student')
@@ -26,16 +22,39 @@ describe('Test Suite for Login Test Page', () => {
             .type('Password123')
             .should('have.value', 'Password123') // Assert that the input box has the text we typed
         cy.get('[id=submit]').click()
-            cy.get('h1').contains('Logged In Successfully') // Assert that the login was successful
-        cy.get('.wp-block-button').click()
-            cy.get('h2').contains('Test login') // Assert that the log out process was successful
+        cy.get('h1').contains('Logged In Successfully') // Assert that the login was successful
+        cy.get('.wp-block-button').click()  // Click the log out botton
+        cy.get('h2').contains('Test login') // Assert that the log out process was successful
+        cy.get('[id=username]')
+        cy.get('[id=password]')
     })
 
-    //   it('Find the summary for the first POST listed for /users', () => {
-    //     // Assert that the navbar exists on the homepage
-    //     //cy.get('.opblock-summary-description').contains('Create Location'),
-    //     cy.get('.opblock-summary-description').contains('Get Users').click(),
-    //     cy.get('.opblock-summary-description').contains('Create User').click()
-    //   })
+    // Step 3: Validate negative use cases
+    it('Validate failed login when invalid username is used', () => {
+        // Assert that the credentials fields exists on the page as expected and we can type into them
+        cy.get('[id=username]')
+            .type('Student') // Wrong username used (capital for first character)
+            .should('have.value', 'Student') // Assert that the input box has the text we typed
+        cy.get('[id=password]')
+            .type('Password123')
+            .should('have.value', 'Password123') // Assert that the input box has the text we typed
+        cy.get('[id=submit]').click()
+        cy.get('[id=error]')
+            .contains('Your username is invalid!') // Assert that the correct failure is shown
+    })
+
+    // Step 3: Validate negative use cases
+    it('Validate failed login when invalid password is used', () => {
+        // Assert that the credentials fields exists on the page as expected and we can type into them
+        cy.get('[id=username]')
+            .type('student')
+            .should('have.value', 'student') // Assert that the input box has the text we typed
+        cy.get('[id=password]')
+            .type('Password1234') // Wrong password used
+            .should('have.value', 'Password1234') // Assert that the input box has the text we typed
+        cy.get('[id=submit]').click()
+        cy.get('[id=error]')
+            .contains('Your password is invalid!') // Assert that the correct failure is shown
+    })
     // More tests...
 })
