@@ -22,6 +22,7 @@ describe('Test Suite for Login Test Page', () => {
             .type('Password123')
             .should('have.value', 'Password123') // Assert that the input box has the text we typed
         cy.get('[id=submit]').click()
+        cy.url().should('include', '/logged-in-successfully') // Assert that the current URL is the logged-in-successfully page
         cy.get('h1').contains('Logged In Successfully') // Assert that the login was successful
         cy.get('.wp-block-button').click()  // Click the log out botton
         cy.get('h2').contains('Test login') // Assert that the log out process was successful
