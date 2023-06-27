@@ -2,10 +2,10 @@ describe('Test Suite for Type Tests', () => {
     beforeEach(() => {
         // Visit the homepage before each test
         cy.visit('https://example.cypress.io/commands/actions')
-        cy.viewport(1280, 720)
+        cy.viewport(1280, 1280)
     })
 
-    it('Validate Validate types for email input field', () => {
+    it('Validate .types() for email input field', () => {
         // Click on the Add button
         cy.get('.action-email')
             .type('fake@email.com', { delay: 200 }).should('have.value', 'fake@email.com')
@@ -31,7 +31,7 @@ describe('Test Suite for Type Tests', () => {
             .should('have.value', 'disabled error checking')
     })
 
-    it('Validate Validate types for email input field', () => {
+    it('Validate .submit() Submit button', () => {
         // Click on the Add button
         cy.get('.action-form')
             .find('[type="text"]').type('HALFOFF')
