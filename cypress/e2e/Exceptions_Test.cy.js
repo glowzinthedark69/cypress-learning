@@ -18,5 +18,10 @@ describe('Test Suite for Test Exceptions Page', () => {
         
         // Wait for the element to load and assert it contains an input-field class
         cy.get('#row2', { timeout: 10000 }).should('exist')
+        cy.get('#row2').find('.input-field').type('test')
+            .click(['id=save_btn'])
+        cy.get('[id=confirmation').should('exist')
+        cy.get('[id=remove_btn]').click()
+        cy.get('[id=confirmation').should('exist')
     }) 
 })
