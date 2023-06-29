@@ -29,10 +29,10 @@ describe('Test Suite for Form Submission Practice', () => {
             .type('test@test.com')
             .should('have.value', 'test@test.com')
         cy.get('#currentAddress')
-            .type('13678 Krameria St.{enter}Thornton, CO{enter}80602')
+            .type('13678 Krameria St.\nThornton, CO\n80602')
             .should('have.value', '13678 Krameria St.\nThornton, CO\n80602')
         cy.get('#permanentAddress')
-            .type('13678 Krameria St.{enter}Thornton, CO{enter}80602')
+            .type('13678 Krameria St.\nThornton, CO\n80602')
             .should('have.value', '13678 Krameria St.\nThornton, CO\n80602')
 
         // Click the submit button
@@ -45,5 +45,35 @@ describe('Test Suite for Form Submission Practice', () => {
             cy.get('#email').should('contain', 'test@test.com')
             // ... other assertions for output
         })
+    })
+
+    it('Validate form submission is not successful when email is not formatted properly', () => {
+        // Type into the fields and assert that they have the text we typed
+        cy.get('#userName')
+            .type('student')
+            .should('have.value', 'student')
+        cy.get('#userEmail')
+            .type('test#test.com')
+            .should('have.value', 'test#test.com')
+        cy.get('#currentAddress')
+            .type('13678 Krameria St.\nThornton, CO\n80602')
+            .should('have.value', '13678 Krameria St.\nThornton, CO\n80602')
+        cy.get('#permanentAddress')
+            .type('13678 Krameria St.\nThornton, CO\n80602')
+            .should('have.value', '13678 Krameria St.\nThornton, CO\n80602')
+
+        // Click the submit button
+        cy.get('#submit').click()
+
+        // The element has an id attribute with the value userEmail and a class attribute with the values mr-sm-2, field-error, and form-control.
+        // Check for the field-error class which indicates an error
+        cy.get('#userEmail.field-error').should('exist');
+        cy.get('#userEmail').should(($input) => {
+            // Get the CSS color property of the input field
+            const color = $input.css('border');
+
+            // Assert that the color is what you expect
+            expect(color).to.equal('1px solid rgb(255, 0, 0)');
+        });
     })
 })
