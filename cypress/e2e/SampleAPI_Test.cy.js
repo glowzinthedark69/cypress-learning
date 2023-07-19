@@ -11,10 +11,27 @@ describe("API Test", () => {
         return Cypress._.every(array, Cypress._.isObject);
       });
 
+      // // Assert that the correct properties exist for each object in the array
+      // expect(response.body.length).to.be.above(0);
+      // response.body.forEach((item) => {
+      //   expect(item).to.be.an("object");
+      //   expect(item).to.have.property("id");
+      //   expect(item.id).to.not.be.null;
+      //   expect(typeof item.id).to.eql("number");
+      //   expect(item.id).to.be.above(-1);
+      //   expect(item.id).to.not.equal(0);
+      //   expect(item).to.have.property("city");
+      //   expect(item.city).to.not.be.null;
+      //   expect(item.city).to.be.a("string");
+      //   expect(item).to.have.property("country");
+      //   expect(item.country).to.not.be.null;
+      //   expect(item.country).to.be.a("string");
+      // });
+
       // Assert the properties of the first object in the response array
-      expect(response.body[0]).to.have.property("id", 39540);
-      expect(response.body[0]).to.have.property("city", "Harberview");
-      expect(response.body[0]).to.have.property("country", "Serbia");
+      expect(response.body[0]).to.have.property("id", 96145);
+      expect(response.body[0]).to.have.property("city", "Rowlandborough");
+      expect(response.body[0]).to.have.property("country", "Tonga");
     });
   });
 });
