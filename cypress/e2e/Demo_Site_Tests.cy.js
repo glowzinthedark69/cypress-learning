@@ -1,4 +1,4 @@
-describe("Test Suite for Swag Labs", () => {
+describe("Test Suite for demo.applitools.com", () => {
   beforeEach(() => {
     // Visit the homepage before each test
     cy.visit("https://demo.applitools.com/");
