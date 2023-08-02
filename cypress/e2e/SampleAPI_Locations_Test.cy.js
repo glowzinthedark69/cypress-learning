@@ -1,3 +1,4 @@
+// Assert that the API returns the correct data based on implementation
 describe("API Test", () => {
   it("Validate JSON response", () => {
     // Make a GET request to your API endpoint
@@ -20,6 +21,7 @@ describe("API Test", () => {
         expect(typeof item.id).to.eql("number");
         expect(item.id).to.be.above(-1);
         expect(item.id).to.not.equal(0);
+        expect(item.id.toString().length).to.be.at.least(5);
         expect(item).to.have.property("city");
         expect(item.city).to.not.be.null;
         expect(item.city).to.be.a("string");
@@ -29,9 +31,9 @@ describe("API Test", () => {
       });
 
       // Assert the properties of the first object in the response array
-      expect(response.body[0]).to.have.property("id", 96145);
-      expect(response.body[0]).to.have.property("city", "Rowlandborough");
-      expect(response.body[0]).to.have.property("country", "Tonga");
+      expect(response.body[0]).to.have.property("id", 43113);
+      expect(response.body[0]).to.have.property("city", "Muraziktown");
+      expect(response.body[0]).to.have.property("country", "Azerbaijan");
     });
   });
 });

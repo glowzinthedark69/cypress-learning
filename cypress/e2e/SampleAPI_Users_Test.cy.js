@@ -20,6 +20,7 @@ describe("API Test", () => {
         expect(typeof item.userId).to.eql("number");
         expect(item.userId).to.be.above(-1);
         expect(item.userId).to.not.equal(0);
+        expect(item.userId.toString().length).to.be.at.least(5);
         expect(item).to.have.property("name");
         expect(item.name).to.not.be.null;
         expect(item.name).to.be.a("string");
@@ -35,13 +36,13 @@ describe("API Test", () => {
       });
 
       // Assert the properties of the first object in the response array
-      expect(response.body[0]).to.have.property("userId", 40526);
-      expect(response.body[0]).to.have.property("name", "Albert Macejkovic");
-      expect(response.body[0]).to.have.property("city", "Hickleberg");
-      expect(response.body[0]).to.have.property("country", "Yemen");
+      expect(response.body[0]).to.have.property("userId", 37732);
+      expect(response.body[0]).to.have.property("name", "John Smith");
+      expect(response.body[0]).to.have.property("city", "Denver");
+      expect(response.body[0]).to.have.property("country", "United States");
       expect(response.body[0]).to.have.property(
         "jobTitle",
-        "Internal Creative Liaison"
+        "Software Test Engineer I"
       );
     });
   });
