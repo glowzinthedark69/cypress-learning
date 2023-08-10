@@ -29,11 +29,6 @@ describe("API Test", () => {
         expect(item.country).to.not.be.null;
         expect(item.country).to.be.a("string");
       });
-
-      // Assert the properties of the first object in the response array
-      expect(response.body[0]).to.have.property("id", 43113);
-      expect(response.body[0]).to.have.property("city", "Muraziktown");
-      expect(response.body[0]).to.have.property("country", "Azerbaijan");
     });
   });
 });

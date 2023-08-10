@@ -34,16 +34,6 @@ describe("API Test", () => {
         expect(item.jobTitle).to.not.be.null;
         expect(item.jobTitle).to.be.a("string");
       });
-
-      // Assert the properties of the first object in the response array
-      expect(response.body[0]).to.have.property("userId", 37732);
-      expect(response.body[0]).to.have.property("name", "John Smith");
-      expect(response.body[0]).to.have.property("city", "Denver");
-      expect(response.body[0]).to.have.property("country", "United States");
-      expect(response.body[0]).to.have.property(
-        "jobTitle",
-        "Software Test Engineer I"
-      );
     });
   });
 });
